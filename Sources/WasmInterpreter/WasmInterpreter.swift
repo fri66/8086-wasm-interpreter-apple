@@ -232,7 +232,7 @@ extension WasmInterpreter {
 }
 
 extension WasmInterpreter {
-    func function(named name: String) throws -> IM3Function {
+    public func function(named name: String) throws -> IM3Function {
         return try lock.locked { () throws -> IM3Function in
             if let compiledFunction = functionCache[name] {
                 return compiledFunction
