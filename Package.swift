@@ -31,8 +31,8 @@ let package = Package(
         ),
         .binaryTarget(
             name: "CWasm3",
-            url: "https://github.com/shareup/cwasm3/releases/download/v0.5.2/CWasm3-0.5.0.xcframework.zip",
-            checksum: "a2b0785be1221767d926cee76b087f168384ec9735b4f46daf26e12fae2109a3"
+            url: "https://github.com/Skittyblock/cwasm3/releases/download/v0.5.3/CWasm3-0.5.0.xcframework.zip",
+            checksum: "dfe038231d10c219e03120bbe1f562a1347be095fc30880167074321a124f32a"
         ),
         .testTarget(
             name: "WasmInterpreterTests",
