@@ -1,6 +1,6 @@
 import Foundation
 
-extension Array where Element == String {
+extension [String] {
     func withCStrings<Result>(
         _ body: ([UnsafePointer<CChar>?]) throws -> Result
     ) rethrows -> Result {
@@ -14,7 +14,7 @@ extension Array where Element == String {
             buffer.append(0)
         }
 
-        return try buffer.withUnsafeBufferPointer { (buffer) -> Result in
+        return try buffer.withUnsafeBufferPointer { buffer -> Result in
             let pointer = UnsafeRawPointer(buffer.baseAddress!)
                 .bindMemory(to: CChar.self, capacity: buffer.count)
             var cStrings: [UnsafePointer<CChar>?] = offsets.map { pointer + $0 }
@@ -24,8 +24,8 @@ extension Array where Element == String {
     }
 }
 
-private extension Array where Element == Int {
-    func offsetsAndTotalLength() -> (Array<Int>, Int) {
+private extension [Int] {
+    func offsetsAndTotalLength() -> ([Int], Int) {
         var output = [0]
         var total = 0
         for length in self {

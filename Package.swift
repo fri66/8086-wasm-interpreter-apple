@@ -1,31 +1,39 @@
-// swift-tools-version:5.3
+// swift-tools-version:5.7
 import PackageDescription
 
 let package = Package(
     name: "WasmInterpreter",
     platforms: [
-        .macOS(.v10_15), .iOS(.v13), .tvOS(.v13), .watchOS(.v5),
+        .macOS(.v11), .iOS(.v14),
     ],
     products: [
         .library(
             name: "WasmInterpreter",
-            targets: ["WasmInterpreter"]),
+            targets: ["WasmInterpreter"]
+        ),
     ],
     dependencies: [
         .package(
-            name: "CWasm3",
-            url: "https://github.com/shareup/cwasm3.git",
-            from: "0.5.1"),
-        .package(
-            name: "Synchronized",
             url: "https://github.com/shareup/synchronized.git",
-            from: "3.0.0"),
+            from: "4.0.0"
+        ),
     ],
     targets: [
         .target(
             name: "WasmInterpreter",
-            dependencies: ["CWasm3", "Synchronized"],
-            cSettings: [.define("APPLICATION_EXTENSION_API_ONLY", to: "YES")]),
+            dependencies: [
+                "CWasm3",
+                .product(name: "Synchronized", package: "synchronized"),
+            ],
+            cSettings: [
+                .define("APPLICATION_EXTENSION_API_ONLY", to: "YES"),
+            ]
+        ),
+        .binaryTarget(
+            name: "CWasm3",
+            url: "https://github.com/shareup/cwasm3/releases/download/v0.5.2/CWasm3-0.5.0.xcframework.zip",
+            checksum: "a2b0785be1221767d926cee76b087f168384ec9735b4f46daf26e12fae2109a3"
+        ),
         .testTarget(
             name: "WasmInterpreterTests",
             dependencies: ["WasmInterpreter"],
@@ -34,6 +42,8 @@ let package = Package(
                 "Resources/memory.wat",
                 "Resources/fib64.wat",
                 "Resources/imported-add.wat",
-                "Resources/add.wat"]),
+                "Resources/add.wat",
+            ]
+        ),
     ]
 )
