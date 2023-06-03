@@ -1,12 +1,21 @@
 {
   "pins" : [
     {
-      "identity" : "synchronized",
+      "identity" : "8086_cwasm3",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/shareup/synchronized.git",
+      "location" : "https://github.com/fri66/8086_cwasm3",
       "state" : {
-        "revision" : "3a07451bbd0933933804c7d9a92ef2fa57b6766f",
-        "version" : "4.0.0"
+        "branch" : "8086",
+        "revision" : "3856e8a88d9e4b7b9c6124692aefafbd874f311d"
+      }
+    },
+    {
+      "identity" : "8086_synchronized",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/fri66/8086_synchronized",
+      "state" : {
+        "branch" : "8086",
+        "revision" : "fa0dc8afc290ad4ddf6b90a97dc6b78eaaa3fdae"
       }
     }
   ],

@@ -14,25 +14,24 @@ let package = Package(
     ],
     dependencies: [
         .package(
-            url: "https://github.com/shareup/synchronized.git",
-            from: "4.0.0"
+            url: "https://github.com/fri66/8086_cwasm3",
+            branch: "8086"
+        ),
+        .package(
+            url: "https://github.com/fri66/8086_synchronized",
+            branch: "8086"
         ),
     ],
     targets: [
         .target(
             name: "WasmInterpreter",
             dependencies: [
-                "CWasm3",
-                .product(name: "Synchronized", package: "synchronized"),
+                .product(name: "CWasm3", package: "8086_cwasm3"),
+                .product(name: "Synchronized", package: "8086_synchronized"),
             ],
             cSettings: [
                 .define("APPLICATION_EXTENSION_API_ONLY", to: "YES"),
             ]
-        ),
-        .binaryTarget(
-            name: "CWasm3",
-            url: "https://github.com/Skittyblock/cwasm3/releases/download/v0.5.3/CWasm3-0.5.0.xcframework.zip",
-            checksum: "dfe038231d10c219e03120bbe1f562a1347be095fc30880167074321a124f32a"
         ),
         .testTarget(
             name: "WasmInterpreterTests",
